@@ -20,7 +20,9 @@ public class PokemonController {
     private PokemonService pokemonService;
 
     @GetMapping
-    public List<Pokemon> getPokemon(@RequestParam("q") String query ) {
-        return pokemonService.GetPokemons(query , null);
+    public List<Pokemon> getPokemon(@RequestParam("q") String query, 
+                                    @RequestParam(defaultValue = "length") String orderBy) {
+
+        return pokemonService.GetPokemons(query, orderBy);
     }
 }
