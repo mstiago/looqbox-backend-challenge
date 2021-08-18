@@ -3,7 +3,7 @@ package com.tiago.pokeapi.shared.utils.sorting;
 import java.util.Collections;
 import java.util.List;
 
-import com.tiago.pokeapi.models.Pokemon;
+import com.tiago.pokeapi.domain.models.Pokemon;
 import com.tiago.pokeapi.shared.utils.sorting.interfaces.Orderable;
 
 public class Sort {

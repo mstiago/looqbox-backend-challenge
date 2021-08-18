@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import com.tiago.pokeapi.models.Pokemon;
-import com.tiago.pokeapi.services.PokemonService;
+import com.tiago.pokeapi.domain.models.Pokemon;
+import com.tiago.pokeapi.services.PokemonRepositoryImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PokemonController {
 
     @Autowired
-    private PokemonService pokemonService;
+    private PokemonRepositoryImpl pokemonService;
 
     @GetMapping
     public List<Pokemon> getPokemon(@RequestParam("q") String query, 
                                     @RequestParam(defaultValue = "length") String orderBy) {
 
-        return pokemonService.GetPokemons(query, orderBy);
+        return pokemonService.getFilteredPokemons(query, orderBy);
     }
 }

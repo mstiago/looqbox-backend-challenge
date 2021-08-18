@@ -1,4 +1,4 @@
-package com.tiago.pokeapi.models;
+package com.tiago.pokeapi.domain.models;
 
 import java.util.List;
 

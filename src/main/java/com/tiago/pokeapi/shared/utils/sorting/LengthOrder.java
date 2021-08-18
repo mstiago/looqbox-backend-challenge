@@ -1,6 +1,6 @@
 package com.tiago.pokeapi.shared.utils.sorting;
 
-import com.tiago.pokeapi.models.Pokemon;
+import com.tiago.pokeapi.domain.models.Pokemon;
 import com.tiago.pokeapi.shared.utils.sorting.interfaces.Orderable;
 
 public class LengthOrder implements Orderable<Pokemon>{

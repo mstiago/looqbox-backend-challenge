@@ -1,4 +1,4 @@
-package com.tiago.pokeapi.models;
+package com.tiago.pokeapi.domain.models;
 
 public class Pokemon{
     public String name;
