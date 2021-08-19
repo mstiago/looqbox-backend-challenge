@@ -21,14 +21,14 @@ import org.springframework.web.client.RestTemplate;
 public class PokemonRepositoryImpl implements PokemonRepository{
 
     @Value("${Pokemon_api.uri}")
-    public String POKEMON_API_URL;
+    public String pokemonApiUrl;
 
     @Override
     public ResponseEntity<GetPokemon> getAllPokemons() {
         ResponseEntity<GetPokemon> response;
 
         try {
-            response =  new RestTemplate().getForEntity(POKEMON_API_URL, GetPokemon.class);            
+            response =  new RestTemplate().getForEntity(pokemonApiUrl, GetPokemon.class);
         }catch(RestClientException e){
             throw new RestClientException(e.getMessage());
         }
@@ -36,7 +36,7 @@ public class PokemonRepositoryImpl implements PokemonRepository{
         return response;
     }
 
-    private boolean filterPokemons(Pokemon pokemon,String query){
+    private boolean filterPokemon(Pokemon pokemon, String query){
         if(pokemon.getName().startsWith(query)){
             String highlight  = String.format("<pre>%s</pre>%s", query, pokemon.getName().substring(query.length()));
 
@@ -56,7 +56,7 @@ public class PokemonRepositoryImpl implements PokemonRepository{
                 .getBody()
                 .getResults()
                 .stream()
-                .filter(pokemon -> filterPokemons(pokemon, query))
+                .filter(pokemon -> filterPokemon(pokemon, query))
                 .collect(Collectors.toList());
 
         Sort.orderPokemons(pokemonsList, order);

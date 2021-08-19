@@ -1,5 +1,6 @@
 package com.tiago.pokeapi.controllers;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,9 +21,11 @@ public class PokemonController {
     private PokemonRepositoryImpl pokemonService;
 
     @GetMapping
-    public List<Pokemon> getPokemon(@RequestParam("q") String query, 
-                                    @RequestParam(defaultValue = "length") String orderBy) {
+    public ResponseEntity<List<Pokemon>> getPokemon(@RequestParam("q") String query,
+                                                    @RequestParam(defaultValue = "length") String orderBy) {
 
-        return pokemonService.getFilteredPokemons(query, orderBy);
+        List<Pokemon> pokemons = pokemonService.getFilteredPokemons(query, orderBy);
+
+        return ResponseEntity.ok().body(pokemons);
     }
 }
