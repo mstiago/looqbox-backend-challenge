@@ -1,0 +1,2 @@
+Pokemon_api:
+    uri: https://pokeapi.co/api/v2/pokemon?limit=2000

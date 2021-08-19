@@ -11,6 +11,7 @@ import com.tiago.pokeapi.shared.utils.sorting.LengthOrder;
 import com.tiago.pokeapi.shared.utils.sorting.Sort;
 import com.tiago.pokeapi.shared.utils.sorting.interfaces.Orderable;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
@@ -18,7 +19,9 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class PokemonRepositoryImpl implements PokemonRepository{
-    public static final String POKEMON_API_URL = "https://pokeapi.co/api/v2/pokemon?limit=2000";
+
+    @Value("${Pokemon_api.uri}")
+    public String POKEMON_API_URL;
 
     @Override
     public ResponseEntity<GetPokemon> getAllPokemons() {
