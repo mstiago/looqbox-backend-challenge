@@ -1,9 +1,6 @@
 package com.elwgomes.looqboxbackendchallenge.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.elwgomes.looqboxbackendchallenge.entities.Pokedex;
 import com.elwgomes.looqboxbackendchallenge.services.PokeAPIService;
@@ -18,8 +15,8 @@ public class PokemonController {
         this.pokeAPIService = pokeAPIService;
     }
 
-    @GetMapping
-    public Pokedex searchPokemonBySubstring(@RequestParam("substring") String substring) {
+    @GetMapping("/{substring}")
+    public Pokedex searchPokemonBySubstring(@PathVariable("substring") String substring) {
         return pokeAPIService.searchPokemonBySubstring(substring);
     }
 }
