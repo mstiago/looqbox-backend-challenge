@@ -3,6 +3,7 @@ package com.elwgomes.looqboxbackendchallenge.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.elwgomes.looqboxbackendchallenge.services.utils.Sorting;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,11 @@ public class PokeAPIService {
         RestTemplate restTemplate = new RestTemplate();
 
         // send a GET request to the PokeAPI and retrieve the response as a pokedex object
-        ResponseEntity<Pokedex> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, Pokedex.class);
+        ResponseEntity<Pokedex> responseEntity = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                Pokedex.class);
         Pokedex response = responseEntity.getBody();
 
         if (response != null && response.getResults() != null) {
@@ -42,6 +47,28 @@ public class PokeAPIService {
 
         return null;
     }
+
+    public Pokedex searchPokemonBySubstringLength(String substring) {
+        Pokedex response = searchPokemonBySubstring(substring);
+
+        if (response != null && response.getResults() != null) {
+            Sorting.sortByLength(response.getResults());
+        }
+
+        return response;
+    }
+
+    public Pokedex searchPokemonBySubstringAlphabetic(String substring) {
+        Pokedex response = searchPokemonBySubstring(substring);
+
+        if (response != null && response.getResults() != null) {
+            Sorting.sortByAlphabeticalOrder(response.getResults());
+        }
+
+        return response;
+    }
+
+
 
     // filter the list of allPokemons based on the given substring
     private List<Pokemon> filterPokemonsBySubstring(List<Pokemon> allPokemons, String substring) {
