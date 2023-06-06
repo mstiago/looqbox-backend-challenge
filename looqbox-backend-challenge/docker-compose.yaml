@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  pokemon-api-server:
+    container_name: looqbox
+    image: poke-api
+    ports:
+      - "8080:8080"
